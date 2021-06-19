@@ -153,9 +153,24 @@ const linksData = [
     link: '/artiklar'
   },
   {
+    title: 'Redaktionsöversikten',
+    icon: 'fas fa-project-diagram',
+    link: '/redaktionsöversikten'
+  },
+  {
     title: 'Nyheter',
     icon: 'fas fa-newspaper',
     link: '/nyheter'
+  },
+  {
+    title: 'Att göra - IT',
+    icon: 'pending_actions',
+    link: '/it-todo'
+  },
+  {
+    title: 'Rapportera en bugg',
+    icon: 'bug_report',
+    link: '/rapportera'
   },
   {
     title: 'Inställningar',

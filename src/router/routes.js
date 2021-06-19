@@ -12,6 +12,10 @@ const routes = [
         path: '/artiklar', 
         component: () => import('src/pages/intranet_pages/Articles.vue') 
       },
+      { 
+        path: '/redaktionsöversikten', 
+        component: () => import('src/pages/intranet_pages/Pipeline.vue') 
+      },
       {
         path: '/granskning',
         component: () => import('src/pages/intranet_pages/Review.vue')
@@ -19,6 +23,14 @@ const routes = [
       {
         path: '/nyheter',
         component: () => import('src/pages/intranet_pages/News.vue')
+      },
+      {
+        path: '/it-todo',
+        component: () => import('src/pages/intranet_pages/ToDo.vue')
+      },
+      {
+        path: '/rapportera',
+        component: () => import('src/pages/intranet_pages/Report.vue')
       },
       {
         path: '/chatt',

@@ -1,5 +1,5 @@
 <template>
-	<q-page>
+	<q-page class="article-view">
 
 		<div class="article-view-header">
 			<Tabs @changeTab="setTab($event)" :tab="tab" />

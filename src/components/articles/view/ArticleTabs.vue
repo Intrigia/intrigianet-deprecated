@@ -3,17 +3,16 @@
   <q-tabs 
     v-model="selected"
     align="left"
-    active-bg-color="primary-bg-hover"
     class="bg-white text-grey-8"
     active-color="primary"
     no-caps
     narrow-indicator
   >
     <!-- These are the individual tabs -->
-    <q-tab name="all_articles" label="Alla artiklar" />
-    <q-tab name="unsent_articles" label="Dina utkast" />
-    <q-tab name="pipeline_articles" label="Inskickade artiklar" alert="primary"  />
-    <q-tab name="published_articles" label="Publicerade artiklar" />
+    <q-tab name="all_articles" label="Alla artiklar" :ripple="false" />
+    <q-tab name="unsent_articles" label="Utkast" :ripple="false" />
+    <q-tab name="pipeline_articles" label="Inskickade artiklar" alert="primary" :ripple="false" />
+    <q-tab name="published_articles" label="Publicerade artiklar" :ripple="false" />
   </q-tabs>
 </template>
 
@@ -38,5 +37,8 @@ export default {
 </script>
 
 <style scoped>
-
+body.desktop .q-focusable:focus > .q-focus-helper, body.desktop .q-manual-focusable--focused > .q-focus-helper, body.desktop .q-hoverable:hover > .q-focus-helper {
+  opacity: 0 !important;
+  background: none !important;
+}
 </style>

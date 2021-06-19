@@ -1,6 +1,6 @@
-# Quasar App (awesome-todo)
+# Intrigianet
 
-A Quasar Framework app
+This is the intranet for the organization intrigia. If you wish to help us develop this you can contact it@intrigia.se
 
 ## Install the dependencies
 ```bash
@@ -18,5 +18,4 @@ quasar dev
 quasar build
 ```
 
-### Customize the configuration
-See [Configuring quasar.conf.js](https://v1.quasar.dev/quasar-cli/quasar-conf-js).
+### You can read more about the framework Quasar at quasar.dev
