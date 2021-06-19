@@ -1,6 +1,6 @@
 # Intrigianet
 
-This is the intranet for the organization intrigia. If you wish to help us develop this you can contact it@intrigia.se
+This is the intranet for the organization Intrigia. If you wish to help us develop this you can contact it@intrigia.se
 
 ## Install the dependencies
 ```bash
