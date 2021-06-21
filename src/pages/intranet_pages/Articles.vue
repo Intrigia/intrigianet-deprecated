@@ -7,7 +7,7 @@
 		</div>
 
 		<TabPages :tab="tab" />
-		<div class="space"></div>
+
 	</q-page>
 </template>
 
