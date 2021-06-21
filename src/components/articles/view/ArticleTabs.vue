@@ -35,10 +35,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-body.desktop .q-focusable:focus > .q-focus-helper, body.desktop .q-manual-focusable--focused > .q-focus-helper, body.desktop .q-hoverable:hover > .q-focus-helper {
-  opacity: 0 !important;
-  background: none !important;
-}
-</style>
