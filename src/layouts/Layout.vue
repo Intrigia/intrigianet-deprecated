@@ -90,11 +90,11 @@
         >
           Intrigianet <span class="text-white">| {{ editorialOffice }}</span>
         </q-item-label>
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
+          <EssentialLink
+            v-for="link in essentialLinks"
+            :key="link.title"
+            v-bind="link"
+          />
 
         <q-separator color="primary" inset />
 

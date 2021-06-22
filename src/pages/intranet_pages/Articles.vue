@@ -14,13 +14,11 @@
 <script>
 import Tabs from 'components/articles/view/ArticleTabs.vue'
 import TabPages from 'components/articles/view/ArticleViews.vue'
-import Add from 'components/articles/view/ArticleViewAddButton.vue'
 
 export default {
 	components: {
 		Tabs,
 		TabPages,
-		Add
 	},
 	name: 'Articles',
 	data () {

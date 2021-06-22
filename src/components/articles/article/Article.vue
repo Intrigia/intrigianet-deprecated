@@ -1,28 +1,38 @@
 <template>
-	<q-card class="article-card" flat bordered>
+	<q-card class="article-card">
+		<!-- This is the header of the card -->
 		<q-item>
 			<q-item-section>
-				<q-item-label>Status:</q-item-label>
-				<q-item-label caption>
-					{{ status }}
-				</q-item-label>
+				<div>
+					<q-chip outline color="primary" icon="inventory_2" >
+						{{ tabName }}
+					</q-chip>
+				</div>
 			</q-item-section>
 		</q-item>
 
-		<q-separator />
+		<q-separator inset />
+
+		<!-- This is the body of the card -->
 		<q-card-section class="body q-pt-xs">
 			<div class="text-h5 q-mt-sm q-mb-xs"> {{ title }} </div>
 			<div class="text-caption text-grey-8"> {{ desc }} </div>
 		</q-card-section>
 
-		<q-separator />
+		<q-separator inset />
 
+		<!-- This it the footer of the card -->
 		<q-card-actions>
 			<q-btn flat round icon="event" />
-			<q-btn flat>
-				7:30PM
-			</q-btn>
-			<q-btn flat
+			<q-item-label class="q-mr-md"> {{ deadline }} </q-item-label>
+
+			<q-separator vertical inset />
+			<q-space></q-space>
+
+
+			<q-btn 
+				flat
+				on-right
 				color="primary" 
 				label="Redigera"
 			/>
@@ -33,6 +43,7 @@
 <script>
 export default {
 	props: {
+		//Props from the article data looped through the v-for
 		ID: {
 			type: Number,
 			required: true
@@ -51,8 +62,24 @@ export default {
 		status: {
 			type: String,
 			required: true
+		},
+
+		deadline: {
+			type: String,
+			default: 'Inte satt'
+		},
+
+		//Tab name
+		tab: {
+			type: String,
+			required: true
 		}
 	},
+	computed: {
+		tabName() {
+			return this.tab
+		}
+	}
 	
 }
 </script>

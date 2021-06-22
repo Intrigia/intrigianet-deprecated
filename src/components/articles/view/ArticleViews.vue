@@ -10,14 +10,27 @@
         v-bind="article"
       />
     </q-tab-panel>
-    <q-tab-panel name="unsent_articles">
-      <h3>Dina utkast</h3>
+    <q-tab-panel class="q-pa-md row q-gutter-md" name="unsent_articles">
+      <Article 
+        v-for="article in articles"
+        :key="article.ID"
+        v-bind="article"
+      />
     </q-tab-panel>
-    <q-tab-panel name="pipeline_articles">
-      <h3>Inskickade artiklar</h3>
+    <q-tab-panel class="q-pa-md row q-gutter-md" name="reviewed_articles">
+      <Article 
+        v-for="article in articles"
+        :key="article.ID"
+        :tab="'pipeline_articles'"
+        v-bind="article"
+      />
     </q-tab-panel>
-    <q-tab-panel name="published_articles">
-      <h3>Publicerade artiklar</h3>
+    <q-tab-panel class="q-pa-md row q-gutter-md" name="published_articles">
+      <Article 
+        v-for="article in articles"
+        :key="article.ID"
+        v-bind="article"
+      />
     </q-tab-panel>
   </q-tab-panels> <!-- New component -->
 </template>
