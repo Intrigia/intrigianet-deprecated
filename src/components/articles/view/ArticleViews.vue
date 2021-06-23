@@ -10,24 +10,20 @@
         v-bind="article"
       />
     </q-tab-panel>
-  </q-tab-panels> <!-- New component -->
+  </q-tab-panels>
 </template>
 
 <script>
-import TabPanel from './views_components/ArticleTabPanel.vue'
 import Article from '../article/Article.vue'
 
 export default {
   props: ['tab', 'tabs'],
   components: { 
     Article, 
-    TabPanel
   },
   computed: {
     tabSelected: {
       get() {
-        console.log(this.tab.name)
-        console.log(this.tab.name)
         return this.tab
       }
     },

@@ -49,7 +49,6 @@ export default {
   },
 	methods: {
 		setTab(val) {
-			console.log(val)
 			this.tab.name = val
 		}
 	}

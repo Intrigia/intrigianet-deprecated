@@ -6,7 +6,7 @@
 
 		<q-separator inset />
 
-		<ArticleFooter :deadline="deadline" />
+		<ArticleFooter :deadline="deadline" :title="title" />
 
 	</q-card>
 </template>
