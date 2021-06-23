@@ -13,16 +13,13 @@
       Adding a v-for would remove repeating keywords like :ripple="" and name="", but it would also remove label
       Maybe make name an object?
      -->
-    <q-tab name="all_articles" label="Alla artiklar" :ripple="false" />
-    <q-tab name="unsent_articles" label="Utkast" :ripple="false" />
-    <q-tab name="reviewed_articles" label="Inskickade artiklar" :ripple="false" />
-    <q-tab name="published_articles" label="Publicerade artiklar" :ripple="false" />
+    <q-tab v-for="tab in tabs" :key="tab.name" :name="tab.name" :label="tab.label" :ripple="false" />
   </q-tabs>
 </template>
 
 <script>
 export default {
-  props: ['tab'], 
+  props: ['tabs', 'selectedTab'], 
   /* 
   This gets and returns the value of the prop for the v-model at (1). 
   Then it returns the v-model value from the tabs to the parent component at (2)
@@ -30,7 +27,7 @@ export default {
   computed: {
     selected: {
       get() { // (1)
-        return this.tab
+        return this.selectedTab
       },
       set(val) { // (2)
         this.$emit('changeTab', val)

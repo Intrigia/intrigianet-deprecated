@@ -48,18 +48,7 @@ export default {
 			type: String,
 			default: 'Inte satt'
 		},
-
-		//Tab name
-		tab: {
-			type: String,
-			required: true
-		}
 	},
-	computed: {
-		tabName() {
-			return this.tab
-		}
-	}
 	
 }
 </script>

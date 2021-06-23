@@ -2,11 +2,11 @@
 	<q-page class="article-view">
 
 		<div class="article-view-header">
-			<Tabs @changeTab="setTab($event)" :tab="tab" />
+			<Tabs @changeTab="setTab($event)" :tabs="tabs" :selectedTab="tab.name" />
 			<q-separator />
 		</div>
 
-		<TabPages :tab="tab" />
+		<TabPages :tabs="tabs" :tab="tab.name" />
 
 	</q-page>
 </template>
@@ -17,19 +17,40 @@ import TabPages from 'components/articles/view/ArticleViews.vue'
 
 export default {
 	components: {
-		Tabs,
-		TabPages,
+		Tabs, // ArticleTabs.vue
+		TabPages, // ArticleViews.vue
 	},
 	name: 'Articles',
 	data () {
     return {
-      tab: 'all_articles'
+      tab: {
+				name: 'all_articles',
+				label: 'Alla artiklar'
+			},
+			tabs: [
+				{
+					name: 'all_articles',
+					label: 'Alla artiklar'
+				},
+				{
+					name: 'unsent_articles',
+					label: 'Utkast'
+				},
+				{
+					name: 'reviewed_articles',
+					label: 'Inskickade artiklar'
+				},
+				{
+					name: 'published_articles',
+					label: 'Publicerade artiklar'
+				}
+			]
     }
   },
 	methods: {
 		setTab(val) {
 			console.log(val)
-			this.tab = val
+			this.tab.name = val
 		}
 	}
 }
