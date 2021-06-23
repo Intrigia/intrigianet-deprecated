@@ -9,9 +9,13 @@
     narrow-indicator
   >
     <!-- These are the individual tabs -->
+    <!-- 
+      Adding a v-for would remove repeating keywords like :ripple="" and name="", but it would also remove label
+      Maybe make name an object?
+     -->
     <q-tab name="all_articles" label="Alla artiklar" :ripple="false" />
     <q-tab name="unsent_articles" label="Utkast" :ripple="false" />
-    <q-tab name="reviewed_articles" label="Inskickade artiklar" alert="primary" :ripple="false" />
+    <q-tab name="reviewed_articles" label="Inskickade artiklar" :ripple="false" />
     <q-tab name="published_articles" label="Publicerade artiklar" :ripple="false" />
   </q-tabs>
 </template>

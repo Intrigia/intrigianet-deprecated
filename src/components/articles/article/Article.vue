@@ -1,14 +1,11 @@
 <template>
 	<q-card class="article-card">
-		<!-- This is the header of the card -->
 		<ArticleHeader :status="status" />
 
-		<!-- This is the body of the card -->
 		<ArticleBody :title="title" :desc="desc" />
 
 		<q-separator inset />
 
-		<!-- This it the footer of the card -->
 		<ArticleFooter :deadline="deadline" />
 
 	</q-card>
