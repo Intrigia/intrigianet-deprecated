@@ -21,7 +21,6 @@
       <Article 
         v-for="article in articles"
         :key="article.ID"
-        :tab="'pipeline_articles'"
         v-bind="article"
       />
     </q-tab-panel>

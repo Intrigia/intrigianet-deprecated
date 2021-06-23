@@ -1,47 +1,30 @@
 <template>
 	<q-card class="article-card">
 		<!-- This is the header of the card -->
-		<q-item>
-			<q-item-section>
-				<div>
-					<q-chip outline color="primary" icon="inventory_2" >
-						{{ tabName }}
-					</q-chip>
-				</div>
-			</q-item-section>
-		</q-item>
-
-		<q-separator inset />
+		<ArticleHeader :status="status" />
 
 		<!-- This is the body of the card -->
-		<q-card-section class="body q-pt-xs">
-			<div class="text-h5 q-mt-sm q-mb-xs"> {{ title }} </div>
-			<div class="text-caption text-grey-8"> {{ desc }} </div>
-		</q-card-section>
+		<ArticleBody :title="title" :desc="desc" />
 
 		<q-separator inset />
 
 		<!-- This it the footer of the card -->
-		<q-card-actions>
-			<q-btn flat round icon="event" />
-			<q-item-label class="q-mr-md"> {{ deadline }} </q-item-label>
+		<ArticleFooter :deadline="deadline" />
 
-			<q-separator vertical inset />
-			<q-space></q-space>
-
-
-			<q-btn 
-				flat
-				on-right
-				color="primary" 
-				label="Redigera"
-			/>
-		</q-card-actions>
 	</q-card>
 </template>
 
 <script>
+import ArticleHeader from 'components/articles/article/article_components/ArticleHeader.vue'
+import ArticleBody from 'components/articles/article/article_components/ArticleBody.vue'
+import ArticleFooter from 'components/articles/article/article_components/ArticleFooter.vue'
+
 export default {
+	components: {
+		ArticleHeader,
+		ArticleBody,
+		ArticleFooter
+	},
 	props: {
 		//Props from the article data looped through the v-for
 		ID: {

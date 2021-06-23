@@ -1,12 +1,20 @@
 <template>
-  <h1> {{ articleTitle }} </h1>
+  <div>
+    <h1> {{ articleTitle }} </h1>
+    <Editor />
+  </div>
 </template>
 
 <script>
+import Editor from 'components/tools/editor/Editor.vue'
+
 export default {
+  components: {
+    Editor
+  },
   computed: {
     articleTitle() {
-      var path = this.$route.path.slice(7, -1)
+      var path = this.$route.path.slice(7, this.$route.path.length)
       var firstLetter = path.slice(1, 2).toUpperCase()
       var rest = path.slice(2)
       return  firstLetter + rest

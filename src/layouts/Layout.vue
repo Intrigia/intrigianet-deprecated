@@ -163,11 +163,6 @@ const linksData = [
     link: '/nyheter'
   },
   {
-    title: 'Att göra - IT',
-    icon: 'pending_actions',
-    link: '/it-todo'
-  },
-  {
     title: 'Rapportera en bugg',
     icon: 'bug_report',
     link: '/rapportera'
@@ -200,6 +195,11 @@ export default {
           title: 'Chatt',
           icon: 'fas fa-comment-dots',
           link: '/chatt'
+        },
+        {
+          title: 'Att göra - IT',
+          icon: 'pending_actions',
+          link: '/it-todo'
         },
       ]
     }
