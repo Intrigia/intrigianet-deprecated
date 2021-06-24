@@ -1,12 +1,12 @@
 <template>
 	<q-page class="article-view">
 
-		<div class="article-view-header">
+		<div class="article-view-header shadow">
 			<Tabs @changeTab="setTab($event)" :tabs="tabs" :selectedTab="tab.name" />
-			<q-separator />
 		</div>
 
-		<TabPages :tabs="tabs" :tab="tab.name" />
+		<!-- These is the  -->
+		<TabPages class="bg-secondary article-views" :tabs="tabs" :tab="tab.name" />
 
 	</q-page>
 </template>
@@ -23,10 +23,12 @@ export default {
 	name: 'Articles',
 	data () {
     return {
+			// Selected tab
       tab: {
 				name: 'all_articles',
 				label: 'Alla artiklar'
 			},
+			// Selection of tabs
 			tabs: [
 				{
 					name: 'all_articles',
@@ -64,5 +66,9 @@ export default {
 
 	.space {
 		height: 200vh;
+	}
+
+	.article-views {
+		min-height: 87.5vh;
 	}
 </style>

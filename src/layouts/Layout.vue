@@ -3,6 +3,7 @@
     <q-header 
       flat
       class="bg-white text-black"
+      :class="[ pageTitle != 'Artiklar' ? 'shadow' : 'no-shadow' ]"
     >
       <q-toolbar>
         <q-btn

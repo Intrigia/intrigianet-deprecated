@@ -3,7 +3,20 @@ body {
   color: $dark
 }
 
+.shadow {
+  box-shadow: 0 1px 4px 0 rgba(21, 7, 38, 0.08);
+}
+
 .q-tab .q-focusable:focus > .q-focus-helper, body.desktop .q-manual-focusable--focused > .q-focus-helper, body.desktop .q-hoverable:hover > .q-focus-helper {
   opacity: 0 !important;
   background: none !important; 
+}
+
+/* Colors */
+.bg-intresso {
+  background: #FA5183;
+}
+
+.text-intresso {
+  color: #FA5183;
 }

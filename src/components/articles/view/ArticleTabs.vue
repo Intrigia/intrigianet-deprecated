@@ -3,16 +3,12 @@
   <q-tabs 
     v-model="selected"
     align="left"
-    class="bg-white text-grey-8"
+    class="bg-white shadow text-grey-8"
     active-color="primary"
     no-caps
     narrow-indicator
   >
     <!-- These are the individual tabs -->
-    <!-- 
-      Adding a v-for would remove repeating keywords like :ripple="" and name="", but it would also remove label
-      Maybe make name an object?
-     -->
     <q-tab v-for="tab in tabs" :key="tab.name" :name="tab.name" :label="tab.label" :ripple="false" />
   </q-tabs>
 </template>

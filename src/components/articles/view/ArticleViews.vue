@@ -4,6 +4,7 @@
     animated
   >
     <q-tab-panel v-for="tab in tabs" :key="tab.name" keep-alive class="q-pa-md row q-gutter-md" :name="tab.name">
+      <!-- Looping through each article with the articles property with tab.name as the value or in other words: the selection name --> 
       <Article 
         v-for="article in articles[tab.name]"
         :key="article.ID"
@@ -31,6 +32,11 @@ export default {
   },
   data() {
     return  {
+      // Articles has to be an array for this method of looping with a v-for inside a v-for
+      /* 
+      The names of articles properties (who in themselves are arrays with objects) 
+      also have to correspond with the tab names and vice versa
+      */
       articles: {
         all_articles: [
           {
