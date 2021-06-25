@@ -1,16 +1,39 @@
 <template>
 	<q-page class="article-view">
-
+		<q-btn
+			style="position: fixed; bottom: 0; right: 0; z-index: 10;"
+			class="q-ma-lg"
+			round
+			color="primary"
+			size="xl"
+			icon="add"
+			v-if="windowWidth <= 690"
+		/>
 		<div class="article-view-header shadow">
-			<Tabs @changeTab="setTab($event)" :tabs="tabs" :selectedTab="tab.name" />
+			<!-- Tabs (1) -->
+			<Tabs 
+				@changeTab="setTab($event)" 
+				:tabs="tabs" 
+				:selectedTab="tab.name" 
+				:windowWidth="windowWidth"
+			/>
 		</div>
 
-		<TabPages class="bg-secondary article-views" :tabs="tabs" :tab="tab.name" :articles="articles" />
+		<!-- Tab Pages (2) -->
+		<TabPages 
+			class="bg-secondary article-views" 
+			:tabs="tabs" 
+			:tab="tab.name" 
+			:articles="articles" 
+		/>
+
+		<Modal :prompt="newArticlePrompt" @disablePrompt="disablePrompt($event)"/>
 
 	</q-page>
 </template>
 
 <script>
+import Modal from 'components/articles/NewArticleModal.vue'
 import Tabs from 'components/articles/view/ArticleTabs.vue'
 import TabPages from 'components/articles/view/ArticleViews.vue'
 
@@ -19,8 +42,16 @@ export default {
 	components: {
 		Tabs, // ArticleTabs.vue
 		TabPages, // ArticleViews.vue
+		Modal, // NewArticleModal.vue
 	},
 	created() {
+		/* 
+		Adding eventListener for window width for the custom css and v-if statement 
+		for tabs (1) and tab pages (2)
+		*/
+		window.addEventListener('resize', this.resizeHanlder)
+		this.resizeHanlder()
+
 		// Start date for the placeholder date function
     const start = new Date(2020, 1, 1, 1, 1, 1)
 		// End date, latest possible deadline
@@ -34,16 +65,27 @@ export default {
     });
   },
 	methods: {
+		// Turns tab name to the $event value from custom event at Tabs
 		setTab(val) {
 			this.tab.name = val
 		},
+		// Turns newArticlePrompt to the $event value from custom event at Modal
+		disablePrompt(val) {
+			this.newArticlePrompt = val
+		},
+		// Get a random date just to place as a placeholder
 		randomDate(start, end) {
     	return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-		}
+		},
+		// A method for setting the data property windowWidth to window.innerWidth
+		resizeHanlder() {
+			this.windowWidth = window.innerWidth
+		},
 	},
 	data () {
     return {
-			// Months, days,  and their abbreviations
+			newArticlePrompt: true,
+			windowWidth: null,
 			// Selected tab
       tab: {
 				name: 'all_articles',

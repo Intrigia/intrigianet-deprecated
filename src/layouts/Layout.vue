@@ -18,21 +18,6 @@
 
         <q-toolbar-title>
           {{ pageTitle }}
-          <!-- Make this a class conditional -->
-          <q-btn
-            color="primary" 
-            label="Skapa ny artikel" 
-            icon="add" 
-            style="position: absolute; top: 12%; left: 150px"
-            v-if="pageTitle == 'Artiklar' && leftDrawerOpen == false"
-          />
-          <q-btn
-            color="primary" 
-            label="Skapa ny artikel" 
-            icon="add" 
-            style="position: absolute; top: 12%; left: 100px"
-            v-if="pageTitle == 'Artiklar' && leftDrawerOpen == true"
-          />
         </q-toolbar-title>
         
 
@@ -51,22 +36,11 @@
       </q-toolbar>
     </q-header>
 
-    <q-footer>
-      <q-tabs>
-        <q-route-tab v-for="(link, i) in essentialLinks" :key="i"
-          :to="link.link"
-          :label="link.title"
-          :icon="link.icon" 
-        />
-      </q-tabs>
-    </q-footer>
-
     <q-drawer
       v-model="leftDrawerOpen"
       :breakpoint="767"
       :width="250"
       show-if-above
-      bordered
       content-class="bg-dark"
     >
 
@@ -164,8 +138,8 @@ const linksData = [
     link: '/nyheter'
   },
   {
-    title: 'Rapportera en bugg',
-    icon: 'bug_report',
+    title: 'Rapportera',
+    icon: 'flag',
     link: '/rapportera'
   },
   {

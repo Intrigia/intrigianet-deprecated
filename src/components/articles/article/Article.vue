@@ -51,11 +51,7 @@ export default {
 </script>
 
 <style scoped>
-	.article-card {
-		width: 370px;
-	}
-
 	.body {
-		min-height: 110px;
+		height: 150px;
 	}
 </style>
