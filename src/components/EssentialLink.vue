@@ -23,9 +23,6 @@
 
 <script>
 export default {
-  created() {
-    console.log(this.$props.icon)
-  },
   name: 'EssentialLink',
   props: {
     title: {

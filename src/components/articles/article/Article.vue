@@ -44,10 +44,7 @@ export default {
 			required: true
 		},
 
-		deadline: {
-			type: String,
-			default: 'Inte satt'
-		},
+		deadline: [Date, String]
 	},
 	
 }

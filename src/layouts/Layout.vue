@@ -178,8 +178,6 @@ const linksData = [
 export default {
   name: 'MainLayout',
   components: { EssentialLink },
-  beforeMount() {
-  },
   data () {
     return {
       leftDrawerOpen: false,

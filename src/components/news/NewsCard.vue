@@ -1,10 +1,10 @@
 <template>
   <div class="col-6">
-    <pre>
+<!--     <pre>
       <code>
         {{ news }}
       </code>
-    </pre>
+    </pre> -->
     <q-card class="news-card">
 
       <Header :news="news"/>

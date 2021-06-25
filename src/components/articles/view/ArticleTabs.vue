@@ -1,5 +1,5 @@
 <template>
-  <!-- This is the quasar container for the tabs -->
+  <!-- This is the quasar container for the tabs (1) -->
   <q-tabs 
     v-model="selected"
     align="left"
@@ -8,7 +8,7 @@
     no-caps
     narrow-indicator
   >
-    <!-- These are the individual tabs -->
+    <!-- These are the individual tabs (2) looped through the tabs prop. Current tab is selected by the selectedTab v-model at (1) -->
     <q-tab v-for="tab in tabs" :key="tab.name" :name="tab.name" :label="tab.label" :ripple="false" />
   </q-tabs>
 </template>

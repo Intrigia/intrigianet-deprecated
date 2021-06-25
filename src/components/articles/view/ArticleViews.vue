@@ -5,7 +5,7 @@
   >
     <q-tab-panel v-for="tab in tabs" :key="tab.name" keep-alive class="q-pa-md row q-gutter-md" :name="tab.name">
       <!-- Looping through each article with the articles property with tab.name as the value or in other words: the selection name --> 
-      <Article 
+      <Article
         v-for="article in articles[tab.name]"
         :key="article.ID"
         v-bind="article"
@@ -18,7 +18,7 @@
 import Article from '../article/Article.vue'
 
 export default {
-  props: ['tab', 'tabs'],
+  props: ['tab', 'tabs', 'articles'],
   components: { 
     Article, 
   },
@@ -30,135 +30,17 @@ export default {
     },
 
   },
+  created() {
+    console.log('---' + this.tab + '---')
+  },
+  watch: {
+    tab: function() {
+      console.log('---' + this.tab + '---')
+    }
+  },
   data() {
     return  {
-      // Articles has to be an array for this method of looping with a v-for inside a v-for
-      /* 
-      The names of articles properties (who in themselves are arrays with objects) 
-      also have to correspond with the tab names and vice versa
-      */
-      articles: {
-        all_articles: [
-          {
-            ID: 1,
-            title: 'Some long article title',
-            desc: 'Some description',
-            deadline: 'Mon 21 Jun 18:30',
-            status: 'Granskas',
-          },
-          {
-            ID: 2,
-            title: 'Some long article title',
-            desc: 'Some description',
-            deadline: 'Mon 21 Jun 18:30',
-            status: 'Granskas',
-          },
-          {
-            ID: 3,
-            title: 'Some long article title',
-            desc: 'Some description',
-            deadline: 'Mon 21 Jun 18:30',
-            status: 'Utkast',
-          },
-          {
-            ID: 4,
-            title: 'Some long article title',
-            desc: 'Some description',
-            deadline: 'Mon 21 Jun 18:30',
-            status: 'Publicerad',
-          }
-        ],
-        unsent_articles: [
-          {
-            ID: 1,
-            title: 'Some long article title',
-            desc: 'Some description',
-            deadline: 'Mon 21 Jun 18:30',
-            status: 'Utkast',
-          },
-          {
-            ID: 2,
-            title: 'Some long article title',
-            desc: 'Some description',
-            deadline: 'Mon 21 Jun 18:30',
-            status: 'Förfrågan skickad',
-          },
-          {
-            ID: 3,
-            title: 'Some long article title',
-            desc: 'Some description',
-            deadline: 'Mon 21 Jun 18:30',
-            status: 'Beviljad',
-          },
-          {
-            ID: 4,
-            title: 'Some long article title',
-            desc: 'Some description',
-            deadline: 'Mon 21 Jun 18:30',
-            status: 'Avslagen',
-          }
-        ],
-        reviewed_articles: [
-          {
-            ID: 1,
-            title: 'Some long article title',
-            desc: 'Some description',
-            deadline: 'Mon 21 Jun 18:30',
-            status: 'Granskas',
-          },
-          {
-            ID: 2,
-            title: 'Some long article title',
-            desc: 'Some description',
-            deadline: 'Mon 21 Jun 18:30',
-            status: 'Granskad',
-          },
-          {
-            ID: 3,
-            title: 'Some long article title',
-            desc: 'Some description',
-            deadline: 'Mon 21 Jun 18:30',
-            status: 'Granskas',
-          },
-          {
-            ID: 4,
-            title: 'Some long article title',
-            desc: 'Some description',
-            deadline: 'Mon 21 Jun 18:30',
-            status: 'Granskas',
-          }
-        ],
-        published_articles: [
-          {
-            ID: 1,
-            title: 'Some long article title',
-            desc: 'Some description',
-            deadline: 'Mon 21 Jun 18:30',
-            status: 'Redo för publicering',
-          },
-          {
-            ID: 2,
-            title: 'Some long article title',
-            desc: 'Some description',
-            deadline: 'Mon 21 Jun 18:30',
-            status: 'Publicerad',
-          },
-          {
-            ID: 3,
-            title: 'Some long article title',
-            desc: 'Some description',
-            deadline: 'Mon 21 Jun 18:30',
-            status: 'Publicerad',
-          },
-          {
-            ID: 4,
-            title: 'Some long article title',
-            desc: 'Some description',
-            deadline: 'Mon 21 Jun 18:30',
-            status: 'Publicerad',
-          }
-        ]
-      }
+
     }
   },
 }
