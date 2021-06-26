@@ -7,12 +7,14 @@
 			color="primary"
 			size="xl"
 			icon="add"
-			v-if="windowWidth <= 690"
+			v-if="windowWidth <= 940"
+      @click="newArticlePrompt = true"
 		/>
 		<div class="article-view-header shadow">
 			<!-- Tabs (1) -->
 			<Tabs 
 				@changeTab="setTab($event)" 
+        @activateModal="activateModal()"
 				:tabs="tabs" 
 				:selectedTab="tab.name" 
 				:windowWidth="windowWidth"
@@ -27,6 +29,7 @@
 			:articles="articles" 
 		/>
 
+    <!-- This is the prompt when clicking either add button (3)  -->
 		<Modal :prompt="newArticlePrompt" @disablePrompt="disablePrompt($event)"/>
 
 	</q-page>
@@ -65,11 +68,15 @@ export default {
     });
   },
 	methods: {
-		// Turns tab name to the $event value from custom event at Tabs
+    // Turns the newArticlePrompt to true responding to custom event at (1)
+    activateModal() {
+      this.newArticlePrompt = true
+    },  
+		// Turns tab name to the $event value from custom event at Tabs (2)
 		setTab(val) {
 			this.tab.name = val
 		},
-		// Turns newArticlePrompt to the $event value from custom event at Modal
+		// Turns newArticlePrompt to the $event value from custom event at Modal (3)
 		disablePrompt(val) {
 			this.newArticlePrompt = val
 		},
