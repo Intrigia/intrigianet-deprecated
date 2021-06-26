@@ -11,11 +11,15 @@
 
       <q-separator inset />
 
-      <q-card-section>
+      <q-card-section class="body">
         <q-card-section>
-          {{ news.title }}
+          <div class="text-h5">
+            {{ news.title }}
+          </div>
           <br/>
-          {{ news.content }}
+          <p>
+            {{ news.content.slice(0, 150) }}... <span class="text-primary"> Läs mer </span>
+          </p>
         </q-card-section>
       </q-card-section>
     </q-card>
@@ -34,3 +38,7 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+</style>
+
