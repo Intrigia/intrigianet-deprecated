@@ -5,9 +5,16 @@
 
     <div class="text-h4 q-mt-md q-mb-lg">Senaste nyheterna</div>
 
+    {{ newsModalOpen }}
+    {{ selectedArticle }}
+
     <div class="latest-news row q-col-gutter-x-lg q-col-gutter-y-sm">
-      <NewsCard v-for="news in newsArr" :key="news.title" :news="news" />
+      <!-- NewsCard component that is looped (1) -->
+      <NewsCard v-for="(news, index) in newsArr" @openNews="openNews($event)" :key="news.title" :index="index" :news="news" />
     </div>
+
+    <!-- The modal that opens on news card click (2) -->
+    <NewsModal @newsClickedModal="clickEventModal()" :news="selectedNews" :open="newsModalOpen" />
 
   </q-page>
 </template>
@@ -15,14 +22,29 @@
 <script>
 import WelcomeCard from 'components/news/WelcomeCard.vue'
 import NewsCard from 'components/news/NewsCard.vue'
+import NewsModal from 'components/news/NewsModal.vue'
 
 export default {
   components: {
     WelcomeCard,
-    NewsCard
+    NewsCard,
+    NewsModal
+  },
+  methods: {
+    openNews(index) {
+      // Gets the index from the news card component (1) and puts the news, with corresponding index in newsArr, in selectedNews
+      this.selectedNews = this.newsArr[index]
+      // Tells the dialog component (2) that it should open
+      this.newsModalOpen = true
+    },
+    clickEventModal() {
+      this.newsModalOpen = false
+    }
   },
   data() {
     return {
+      newsModalOpen: false,
+      selectedArticle: {},
       user: 'Daniel Öhman',
       newsArr: [
         {

@@ -1,5 +1,5 @@
 <template>
-  <q-dialog v-model="promptModel" persistent>
+  <q-dialog v-model="promptModal" persistent>
     <q-card style="min-width: 350px; margin-top: -15%;" >
       <div class="row justify-end" >
         <q-btn class="align-right" unelevated round icon="close" @click="$emit('disablePrompt', false)"/>
@@ -68,7 +68,7 @@ export default {
     }
   },
   computed: {
-    promptModel: {
+    promptModal: {
       get() {
         return this.prompt
       },
