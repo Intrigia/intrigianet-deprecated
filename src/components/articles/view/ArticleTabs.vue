@@ -18,14 +18,15 @@
       color="primary" 
       label="Skapa ny artikel" 
       icon="add"
-      v-if="windowWidth > 690"
+      v-if="windowWidth > 940"
+      @click="$emit('activateModal')"
     />
   </q-tabs>
 </template>
 
 <script>
 export default {
-  props: ['tabs', 'selectedTab', 'windowWidth'], 
+  props: ['tabs', 'selectedTab', 'windowWidth', 'prompt'], 
   /* 
   This gets and returns the value of the prop for the v-model at (1). 
   Then it returns the v-model value from the tabs to the parent component at (2)

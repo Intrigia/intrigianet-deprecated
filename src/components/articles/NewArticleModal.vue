@@ -1,8 +1,12 @@
 <template>
   <q-dialog v-model="promptModel" persistent>
     <q-card style="min-width: 350px; margin-top: -15%;" >
+      <div class="row justify-end" >
+        <q-btn class="align-right" unelevated round icon="close" @click="$emit('disablePrompt', false)"/>
+      </div>
+
       <q-card-section>
-        <div class="text-h6">Artikelförfrågan</div>
+        <div class="text-h6 text-center">Artikelförfrågan</div>
       </q-card-section>
 
       <q-card-section class="q-pt-none">
@@ -42,8 +46,8 @@
       </q-card-section>
 
       <q-card-actions align="right" class="text-primary">
-        <q-btn flat label="Cancel" v-close-popup />
-        <q-btn flat label="Add address" v-close-popup />
+        <q-btn unelevated outline label="Börja skriva utan förfrågan" />
+        <q-btn unelevated color="primary" label="Skicka in" />
       </q-card-actions>
     </q-card>
   </q-dialog>
