@@ -5,9 +5,6 @@
 
     <div class="text-h4 q-mt-md q-mb-lg">Senaste nyheterna</div>
 
-    {{ newsModalOpen }}
-    {{ selectedArticle }}
-
     <div class="latest-news row q-col-gutter-x-lg q-col-gutter-y-sm">
       <!-- NewsCard component that is looped (1) -->
       <NewsCard v-for="(news, index) in newsArr" @openNews="openNews($event)" :key="news.title" :index="index" :news="news" />
