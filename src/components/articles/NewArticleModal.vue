@@ -1,6 +1,6 @@
 <template>
   <q-dialog v-model="promptModal" persistent>
-    <q-card style="min-width: 350px; margin-top: -15%;" >
+    <q-card style="min-width: 350px; margin-top: -5%;" >
       <div class="row justify-end" >
         <q-btn class="align-right" unelevated round icon="close" @click="$emit('disablePrompt', false)"/>
       </div>

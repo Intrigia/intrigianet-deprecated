@@ -54,4 +54,7 @@ export default {
 	.body {
 		height: 150px;
 	}
+	.article-card {
+		padding-top: 0.1px;
+	}
 </style>
