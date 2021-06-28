@@ -1,5 +1,8 @@
 <template>
-  <q-page class="bg-secondary q-pa-xl">
+  <q-page 
+    class="bg-secondary"
+    :class="{ 'q-pa-xl': this.windowWidth > 450, 'q-pa-md': this.windowWidth <= 450 }"
+  >
 
     <WelcomeCard :user="user" />
 
@@ -7,11 +10,17 @@
 
     <div class="latest-news row q-col-gutter-x-lg q-col-gutter-y-sm">
       <!-- NewsCard component that is looped (1) -->
-      <NewsCard v-for="(news, index) in newsArr" @openNews="openNews($event)" :key="news.title" :index="index" :news="news" />
+      <NewsCard 
+        v-for="(news, index) in newsArr"
+        :key="news.title" 
+        @openNews="openNews($event)"  
+        :windowWidth="windowWidth" 
+        :index="index" 
+        :news="news" />
     </div>
 
     <!-- The modal that opens on news card click (2) -->
-    <NewsModal @newsClickedModal="clickEventModal()" :news="selectedNews" :open="newsModalOpen" />
+    <NewsModal :windowWidth="windowWidth" @newsClickedModal="clickEventModal()" :news="selectedNews" :open="newsModalOpen" />
 
   </q-page>
 </template>
@@ -27,6 +36,17 @@ export default {
     NewsCard,
     NewsModal
   },
+  created() {
+		/* 
+		Adding eventListener for window width for the custom css and v-if statement 
+		for tabs (1) and tab pages (2)
+		*/
+		window.addEventListener('resize', this.resizeHanlder)
+		this.resizeHanlder()
+  },
+  destroyed() {
+    window.addEventListener('resize', this.resizeHanlder)
+  },
   methods: {
     openNews(index) {
       // Gets the index from the news card component (1) and puts the news, with corresponding index in newsArr, in selectedNews
@@ -36,12 +56,21 @@ export default {
     },
     clickEventModal() {
       this.newsModalOpen = false
-    }
+    },
+    // TODO find a way to make this global, or move the position of this method and its purpose to App.vue, but that impacts performance
+    // A method for setting the data property windowWidth to window.innerWidth
+    resizeHanlder() {
+      this.windowWidth = window.innerWidth
+    },
   },
   data() {
     return {
+      windowWidth: null,
       newsModalOpen: false,
-      selectedArticle: {},
+      selectedNews: {
+        title: '',
+        content: ''
+      },
       user: 'Daniel Öhman',
       newsArr: [
         {

@@ -28,7 +28,7 @@
 import Header from 'components/news/news_card_components/NewsCardHeader.vue'
 
 export default {
-  props: ['open', 'news'],
+  props: ['open', 'news', 'windowWidth'],
   components: {
     Header
   },

@@ -67,6 +67,9 @@ export default {
       }
     });
   },
+  destroyed() {
+    window.addEventListener('resize', this.resizeHanlder)
+  },
 	methods: {
     // Turns the newArticlePrompt to true responding to custom event at (1)
     activateModal() {
