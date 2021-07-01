@@ -31,11 +31,13 @@ export default {
     }
   },
   mounted() {
+    // Sets the innerText of the paragraph to the value passed down from v-model on init
     this.$refs.editable.innerText = this.value
   },
   methods: {
     select() {
-      setTimeout(() => {
+      // Next tick is needed to wait for DOM changes before the element can be selected
+      this.$nextTick(() => {
         var el = this.$refs.editable
         var range = document.createRange()
         var sel = window.getSelection();
@@ -43,7 +45,7 @@ export default {
         range.collapse(false);
         sel.removeAllRanges();
         sel.addRange(range);
-      }, 0)
+      })
     },
     // Custom event call for new paragraph / component on enter keypress
     newParagraph() {
@@ -98,10 +100,9 @@ export default {
   .input {
     z-index: 10;
   }
-  .input[placeholder]:empty:not(:focus):before {
+  .input[placeholder]:empty:not(:focus):before { /* Adds the placeholder attribute text */
     content: attr(placeholder);
     color: grey;
     pointer-events: none;
   }
-  /* Paragraph element and its siblings */
 </style>

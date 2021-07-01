@@ -4,7 +4,6 @@
       <div class="input title-input" @keydown.enter.prevent="newParagraph(-1)">
         <p class="element input-empty" placeholder="Din titel..." contenteditable="true"></p>
       </div>
-      <!-- TODO Fix duplicate key bs and understand why it doesn't work when there is not duplicate key -->
       <div 
         class="content-items"
         v-for="(item, i) in content"
@@ -137,14 +136,11 @@ export default {
   /** Title input **/
   .title-input {
     font-size: 2.125rem !important;
-  }
-  /** Input **/
-  .input {
+    margin-top: 10px;
     border: none !important;
     width: 100%;
-    font-size: 1.3125rem;
-    margin-top: 10px;
   }
+  /** Input **/
   .input .element[contenteditable]:focus {
     outline: 0px solid transparent;
   }
