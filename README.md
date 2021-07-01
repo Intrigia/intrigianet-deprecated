@@ -19,4 +19,4 @@ quasar dev
 quasar build
 ```
 
-### You can read more about the framework Quasar at quasar.dev
+### You can read more about the framework Quasar at [quasar.dev](https://quasar.dev)
