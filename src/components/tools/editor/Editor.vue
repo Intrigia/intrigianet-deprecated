@@ -1,8 +1,11 @@
 <template>
   <div>
     <div id="writing-area" class="shadow q-ma-lg">
+      <!-- Separate to (1) into a component, along with all functions and props -->
       <div class="input title-input" @keydown.enter.prevent="newParagraph(-1)">
-        <p class="element input-empty" placeholder="Din titel..." contenteditable="true"></p>
+        <p ref="title" class="element input-empty" placeholder="Din titel..." @input="titleChange()" contenteditable="true">  
+          {{ localTitle }}
+        </p>
       </div>
       <div 
         class="content-items"
@@ -20,15 +23,31 @@
           @updateDone="updateDone($event)"
         ></component>
       </div>
+      <!-- (1) -->
 
       <div class="q-mt-xl"></div>
       <q-separator />
 
       <Sources 
+        @setSourceLabel="setSourceLabel($event)"
         @setAuthors="setAuthors($event)"
         @setType="setType($event)" 
+        @setTitle="setTitle($event)"
+        @setSource="setSource($event)"
+        @setLink="setLink($event)"
+        @addNewSource="addNewSource()"
+        @deleteSource="deleteSource($event)"
+        @setDate="setDate($event)"
         :sources="sources" 
       />
+      <!--         @setSourceLabel="setSourceLabel($event)"
+        @setAuthors="setAuthors($event)"
+        @setType="setType($event)" 
+        @setTitle="setTitle($event)"
+        @setSource="setSource($event)"
+        @addNewSource="addNewSource()"
+        @deleteSource="deleteSource($event)"
+        @setDate="setDate($event)" -->
     </div>
   </div>
 </template>
@@ -42,6 +61,7 @@ import Paragraph from 'components/tools/editor/editor_components/editor_elements
 import ImageView from 'components/tools/editor/editor_components/editor_elements/Image.vue'
 
 export default {
+  props: ['title'],
   components: {
     Toolbar,
     Editor,
@@ -49,53 +69,30 @@ export default {
     Paragraph,
     ImageView
   },
+  mounted() {
+    this.localTitle = this.title
+  },
   data() {
     return {
-      title: '',
+      localTitle: '',
       content: [
         {
-          string: 'Soe ',
+          string: '',
           type: 'Paragraph',
         },
         {
           string: '',
           type: 'ImageView'
         },
-        {
-          string: '',
-          type: 'Paragraph'
-        }
       ],
-      sources: [
-        {
-          type: 'TypeWebsite',
-          authors: ['A. A. Andersson'],
-          title: 'O. G. Olsson',
-          source: 'Nationalencyklopedin',
-          link: '',
-          date: '',
-        },
-        {
-          type: 'TypeBook',
-          authors: [],
-          title: 'O. G. Olsson',
-          source: 'Nationalencyklopedin',
-          page: '',
-          ISBN: '',
-        },
-        {
-          type: 'TypeVideo',
-          authors: [],
-          title: 'O. G. Olsson',
-          source: 'Nationalencyklopedin',
-          link: '',
-          date: '',
-        }
-      ]
+      sources: []
     }
   },
   methods: {
-    // Writing Area
+    // // Writing Area
+    titleChange() {
+      this.$emit('titleChange', this.$refs.title.innerText)
+    },
     updateDone(i) {
       this.content[i].new = false
     },
@@ -143,11 +140,44 @@ export default {
       }, 1)
     },
     // Sources
+    setSourceLabel(label) {
+      this.sources[label.index].label = label.label
+    },
     setType(type) {
       this.sources[type.index].type = type.type
     },
     setAuthors(authors) {
       this.sources[authors.index].authors = authors.authors
+    },
+    setTitle(title) {
+      this.sources[title.index].title = title.title
+    },
+    setSource(source) {
+      this.sources[source.index].source = source.source
+    },
+    setDate(date) {
+      this.sources[date.index].date = date.date
+    },
+    setLink(link) {
+      this.sources[link.index].link = link.link
+    },
+    addNewSource() {
+      // If created outside of this function the contents will be mutated
+      const sourceTemplate = {
+        label: '',
+        type: '',
+        authors: [],
+        title: '',
+        source: '',
+        link: '',
+        date: '',
+        page: '',
+        ISBN: '',
+      }
+      this.sources.push(sourceTemplate)
+    },
+    deleteSource(index) {
+      this.sources.splice(index, 1)
     }
   }
 }

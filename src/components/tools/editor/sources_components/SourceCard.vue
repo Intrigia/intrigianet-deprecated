@@ -5,6 +5,7 @@
         v-model="selectedType" 
         :options="options" 
         label="Källtyp" 
+        hint="Vilken typ av källa har du valt?"
         emit-value
         map-options
       />
@@ -15,6 +16,10 @@
         :index="index"
         :source="source"
         @setAuthors="setAuthors($event)"
+        @setTitle="setTitle($event)"
+        @setSource="setSource($event)"
+        @setLink="setLink($event)"
+        @setDate="setDate($event)"
       ></component>
     </q-card-section>
   </q-card>
@@ -36,7 +41,7 @@ export default {
     return {
       options: [
         {
-          label: 'Hemsida / länk',
+          label: 'Hemsida / Artikel',
           value: 'TypeWebsite'
         },
         {
@@ -48,14 +53,24 @@ export default {
           value: 'TypeVideo'
         }
       ],
-      // For the author select
-
     }
   },
   methods: {
     setAuthors(author) {
       this.$emit('setAuthors', author)
-    }
+    },
+    setTitle(title) {
+      this.$emit('setTitle', title)
+    },
+    setSource(source) {
+      this.$emit('setSource', source)
+    },
+    setLink(link) {
+      this.$emit('setLink', link)
+    },
+    setDate(date) {
+      this.$emit('setDate', date)
+    },
   },
   computed: {
     selectedType: {
