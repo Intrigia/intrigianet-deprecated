@@ -3,7 +3,7 @@
 node_modules
 
 # Config
-quasar.conf.js
+./quasar.conf.js
 
 # Quasar core related directories
 .quasar

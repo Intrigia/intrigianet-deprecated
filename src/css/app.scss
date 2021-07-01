@@ -12,6 +12,24 @@ body {
   background: none !important; 
 }
 
+/* Printing for the editor */
+@media print {
+  #editor-layout *, #editor-container * { 
+    position: relative !important;
+    padding: 0 !important;
+    height: 1px !important;
+    overflow: visible !important;
+  }
+  #writing-area {
+    position: absolute !important; 
+    width: 100% !important; 
+    height: 100% !important;
+    top: 0 !important; 
+    padding: 0 !important; 
+    margin: -1px !important;
+  }
+}
+
 /* Colors */
 .bg-intresso {
   background: #FA5183;

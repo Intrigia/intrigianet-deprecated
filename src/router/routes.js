@@ -48,7 +48,7 @@ const routes = [
     children: [
       {
         path: ':article_id',
-        component: () => import('pages/tools/Editor.vue')
+        component: () => import('pages/tools/EditorPage.vue')
       },
       {
         path: ':article_id/förhandsgranskning',
