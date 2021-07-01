@@ -4,7 +4,7 @@
     animated
   >
     <q-tab-panel v-for="tab in tabs" :key="tab.name" keep-alive class="tab" :name="tab.name">
-      <div class="row q-col-gutter-x-md q-col-gutter-y-sm">
+      <div class="row q-col-gutter-x-md q-col-gutter-y-md">
         <!-- Looping through each article with the articles property with tab.name as the value or in other words: the selection name --> 
         <div class="col-lg-4 col-md-6 col-sm-12 col-12" v-for="article in articles[tab.name]" :key="article.ID">
           <Article v-bind="article" />
@@ -40,10 +40,3 @@ export default {
   }, */
 }
 </script>
-
-<style scoped>
-  .tab {
-    margin-top: -10px !important;
-  }
-</style>
-
