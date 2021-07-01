@@ -22,9 +22,13 @@
       </div>
 
       <div class="q-mt-xl"></div>
-      <q-separator q-ma-xl/>
-<!-- 
-      <Sources :sources="sources" /> -->
+      <q-separator />
+
+      <Sources 
+        @setAuthors="setAuthors($event)"
+        @setType="setType($event)" 
+        :sources="sources" 
+      />
     </div>
   </div>
 </template>
@@ -47,7 +51,6 @@ export default {
   },
   data() {
     return {
-      sourcesExpanded: false,
       title: '',
       content: [
         {
@@ -65,6 +68,23 @@ export default {
       ],
       sources: [
         {
+          type: 'TypeWebsite',
+          authors: ['A. A. Andersson'],
+          title: 'O. G. Olsson',
+          source: 'Nationalencyklopedin',
+          link: '',
+          date: '',
+        },
+        {
+          type: 'TypeBook',
+          authors: [],
+          title: 'O. G. Olsson',
+          source: 'Nationalencyklopedin',
+          page: '',
+          ISBN: '',
+        },
+        {
+          type: 'TypeVideo',
           authors: [],
           title: 'O. G. Olsson',
           source: 'Nationalencyklopedin',
@@ -75,6 +95,7 @@ export default {
     }
   },
   methods: {
+    // Writing Area
     updateDone(i) {
       this.content[i].new = false
     },
@@ -120,6 +141,13 @@ export default {
           }
         }
       }, 1)
+    },
+    // Sources
+    setType(type) {
+      this.sources[type.index].type = type.type
+    },
+    setAuthors(authors) {
+      this.sources[authors.index].authors = authors.authors
     }
   }
 }
