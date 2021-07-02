@@ -14,6 +14,7 @@
       input-debounce="0"
       new-value-mode="add"
     />
+
     <!-- Title input -->
     <q-input 
       class="q-mb-lg" 
@@ -21,6 +22,7 @@
       label="Rubrik" 
       hint="Vilken rubrik / titel har källan?" 
     />
+    
     <!-- Organization input -->
     <q-input 
       class="q-mb-lg" 
@@ -100,12 +102,12 @@ export default {
     },
     org: {
       get() {
-        return this.source.source
+        return this.source.org
       },
-      set(source) {
-        this.$emit('setSource', {
+      set(org) {
+        this.$emit('setOrg', {
           index: this.index,
-          source: source
+          org: org
         })
       }
     },

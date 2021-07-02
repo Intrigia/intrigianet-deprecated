@@ -17,9 +17,12 @@
         :source="source"
         @setAuthors="setAuthors($event)"
         @setTitle="setTitle($event)"
-        @setSource="setSource($event)"
+        @setEdition="setEdition($event)"
+        @setPubPlace="setPubPlace($event)" 
+        @setOrg="setOrg($event)"
         @setLink="setLink($event)"
         @setDate="setDate($event)"
+        @setPage="setPage($event)"
       ></component>
     </q-card-section>
   </q-card>
@@ -62,14 +65,23 @@ export default {
     setTitle(title) {
       this.$emit('setTitle', title)
     },
-    setSource(source) {
-      this.$emit('setSource', source)
+    setEdition(edition) {
+      this.$emit('setEdition', edition)
+    },
+    setPubPlace(publication_place) {
+      this.$emit('setPubPlace', publication_place)
+    },
+    setOrg(org) {
+      this.$emit('setOrg', org)
     },
     setLink(link) {
       this.$emit('setLink', link)
     },
     setDate(date) {
       this.$emit('setDate', date)
+    },
+    setPage(page) {
+      this.$emit('setPage', page)
     },
   },
   computed: {

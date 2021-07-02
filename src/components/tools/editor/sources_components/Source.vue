@@ -31,9 +31,12 @@
               @setAuthors="setAuthors($event)" 
               @setType="setType($event)"
               @setTitle="setTitle($event)"
-              @setSource="setSource($event)"
+              @setEdition="setEdition($event)"
+              @setPubPlace="setPubPlace($event)"
+              @setOrg="setOrg($event)"
               @setLink="setLink($event)"
               @setDate="setDate($event)"
+              @setPage="setPage($event)"
               :index="i" 
               :source="source" 
             />
@@ -81,28 +84,46 @@ export default {
       var newLabel = ''
       
       // Loops through all the authors and appends them to newLabel string
-      this.sources[index].authors.forEach((author, i, array) => {
-        if ( i == array.length - 1 ) {
-          newLabel = newLabel + author + ',. '
-        } else {
-          newLabel = newLabel + author + ', '
-        }
-      })
-
-      if ( this.sources[index].title.length > 0 ) {
-        newLabel = newLabel + "'" + this.sources[index].title + "',."
+      if ( this.sources[index].type != 'TypeVideo' ) {
+        this.sources[index].authors.forEach((author, i, array) => {
+          if ( i == array.length - 1 ) {
+            newLabel = newLabel + author + ',. '
+          } else {
+            newLabel = newLabel + author + ', '
+          }
+        })
       }
 
-      if ( this.sources[index].source.length > 0 ) {
-        newLabel = newLabel + ' ' + this.sources[index].source + ',.'
+      if ( this.sources[index].title.length > 0 && this.sources[index].type != 'TypeVideo' ) {
+        newLabel = newLabel + "'" + this.sources[index].title + "',."
+      } else if ( this.sources[index].title.length > 0 ) {
+        newLabel = newLabel + "'" + this.sources[index].title + "' [online video] " + ",."
+      }
+
+      if ( this.sources[index].edition.length > 0 ) {
+        newLabel = newLabel + ' ' + this.sources[index].edition + ",."
+      }
+
+      if ( this.sources[index].publication_place.length > 0 ) {
+        newLabel = newLabel + ' ' + this.sources[index].publication_place + ",."
+      }
+
+      if ( this.sources[index].org.length > 0 ) {
+        newLabel = newLabel + ' ' + this.sources[index].org + ',.'
       }
 
       if ( this.sources[index].link.length > 0 ) {
         newLabel = newLabel + ' ' + this.sources[index].link + " "
       }
 
-      if ( this.sources[index].date.length > 0 ) {
+      if ( this.sources[index].date.length > 0 && this.sources[index].type != 'TypeBook' ) {
         newLabel = newLabel + '(hämtad ' + this.sources[index].date + ')'
+      } else if ( this.sources[index].date.length > 0 ) {
+        newLabel = newLabel + ' ' + this.sources[index].date + ',.'
+      }
+
+      if ( this.sources[index].page.length > 0 ) {
+        newLabel = newLabel + ' ' + this.sources[index].page 
       }
 
       // Emits the newLabel to Editor.vue
@@ -121,8 +142,14 @@ export default {
     setTitle(title) {
       this.$emit('setTitle', title)
     },
-    setSource(source) {
-      this.$emit('setSource', source)
+    setEdition(edition) {
+      this.$emit('setEdition', edition)
+    },
+    setPubPlace(publication_place) {
+      this.$emit('setPubPlace', publication_place)
+    }, 
+    setOrg(org) {
+      this.$emit('setOrg', org)
     },
     setLink(link) {
       this.$emit('setLink', link)
@@ -130,6 +157,9 @@ export default {
     setDate(date) {
       this.$emit('setDate', date)
     },
+    setPage(page) {
+      this.$emit('setPage', page)
+    }
 
   },
 }

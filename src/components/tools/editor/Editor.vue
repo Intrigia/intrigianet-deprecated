@@ -24,6 +24,15 @@
         ></component>
       </div>
       <!-- (1) -->
+<!--       <q-separator inset class="q-mt-lg" />
+      <div class="row justify-center q-pt-lg">
+        <q-btn 
+          icon="add"
+          outline
+          round
+          color="primary"
+        />
+      </div> -->
 
       <div class="q-mt-xl"></div>
       <q-separator />
@@ -33,21 +42,16 @@
         @setAuthors="setAuthors($event)"
         @setType="setType($event)" 
         @setTitle="setTitle($event)"
-        @setSource="setSource($event)"
+        @setEdition="setEdition($event)"
+        @setPubPlace="setPubPlace($event)"
+        @setOrg="setOrg($event)"
         @setLink="setLink($event)"
         @addNewSource="addNewSource()"
         @deleteSource="deleteSource($event)"
         @setDate="setDate($event)"
+        @setPage="setPage($event)"
         :sources="sources" 
       />
-      <!--         @setSourceLabel="setSourceLabel($event)"
-        @setAuthors="setAuthors($event)"
-        @setType="setType($event)" 
-        @setTitle="setTitle($event)"
-        @setSource="setSource($event)"
-        @addNewSource="addNewSource()"
-        @deleteSource="deleteSource($event)"
-        @setDate="setDate($event)" -->
     </div>
   </div>
 </template>
@@ -145,6 +149,15 @@ export default {
     },
     setType(type) {
       this.sources[type.index].type = type.type
+      this.sources[type.index].label = ''
+      if (this.sources[type.index].type == 'TypeVideo') {
+        this.sources[type.index].authors = []
+      }
+      this.sources[type.index].page = ''
+      this.sources[type.index].edition = ''
+      this.sources[type.index].publication_place = ''
+      this.sources[type.index].date = ''
+      this.sources[type.index].link = ''
     },
     setAuthors(authors) {
       this.sources[authors.index].authors = authors.authors
@@ -152,14 +165,23 @@ export default {
     setTitle(title) {
       this.sources[title.index].title = title.title
     },
-    setSource(source) {
-      this.sources[source.index].source = source.source
+    setEdition(edition) {
+      this.sources[edition.index].edition = edition.edition
+    },
+    setPubPlace(publication_place) {
+      this.sources[publication_place.index].publication_place = publication_place.publication_place
+    },
+    setOrg(org) {
+      this.sources[org.index].org = org.org
     },
     setDate(date) {
       this.sources[date.index].date = date.date
     },
     setLink(link) {
       this.sources[link.index].link = link.link
+    },
+    setPage(page) {
+      this.sources[page.index].page = page.page
     },
     addNewSource() {
       // If created outside of this function the contents will be mutated
@@ -168,11 +190,12 @@ export default {
         type: '',
         authors: [],
         title: '',
-        source: '',
+        org: '',
         link: '',
         date: '',
-        page: '',
-        ISBN: '',
+        edition: '',
+        publication_place: '',
+        page: ''
       }
       this.sources.push(sourceTemplate)
     },
