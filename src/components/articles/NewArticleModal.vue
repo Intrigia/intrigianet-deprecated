@@ -2,7 +2,7 @@
   <q-dialog v-model="promptModal" persistent>
     <q-card style="min-width: 350px; margin-top: -5%;" >
       <div class="row justify-end" >
-        <q-btn class="align-right" unelevated round icon="close" @click="$emit('disablePrompt', false)"/>
+        <q-btn class="align-right text-grey-6" unelevated round icon="close" @click="$emit('disablePrompt', false)"/>
       </div>
 
       <q-card-section>
@@ -16,7 +16,6 @@
       <!-- TODO Add filtering for writing -->
       <q-card-section>
         <q-select
-          filled
           v-model="chosenCategories"
           use-input
           input-debounce="0"
@@ -45,9 +44,13 @@
         />
       </q-card-section>
 
-      <q-card-actions align="right" class="text-primary">
-        <q-btn unelevated outline label="Börja skriva utan förfrågan" />
-        <q-btn unelevated color="primary" label="Skicka in" />
+      <q-card-actions class="row text-primary">
+        <div class="col-6 btn-col">
+          <q-btn style="width: 100%" unelevated outline label="Skapa ett utkast" />
+        </div>
+        <div class="col-6 btn-col">
+          <q-btn style="width: 100%" unelevated color="primary" label="Skicka in" />
+        </div>
       </q-card-actions>
     </q-card>
   </q-dialog>
@@ -86,5 +89,8 @@ export default {
 <style scoped>
   .q-textarea.q-field--labeled .q-field__native {
     padding-top: 5px
+  }
+  .btn-col {
+    padding: 6.5px
   }
 </style>
