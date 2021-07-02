@@ -94,7 +94,7 @@ export default {
 	},
 	data () {
     return {
-			newArticlePrompt: true,
+			newArticlePrompt: false,
 			windowWidth: null,
 			// Selected tab
       tab: {
