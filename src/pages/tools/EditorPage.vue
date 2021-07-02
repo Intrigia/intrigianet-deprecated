@@ -7,7 +7,7 @@
           <q-avatar>
             <img src="../../../public/icons/icon.png" alt="">
           </q-avatar>
-          Status - Titel
+          {{ title }}
         </q-toolbar-title>
       </q-toolbar>
 
@@ -20,7 +20,7 @@
       </q-toolbar>
     </q-header>
 
-    <Editor />
+    <Editor @titleChange="titleChange($event)" :title="articleTitle" />
   </div>
 </template>
 
@@ -31,12 +31,27 @@ export default {
   components: {
     Editor
   },
+  beforeMount() {
+    var path = this.$route.path.replace(/_/g, ' ').slice(7, this.$route.path.length)
+    var firstLetter = path.slice(1, 2).toUpperCase()
+    var rest = path.slice(2)
+    this.title = firstLetter + rest
+  },
+  data() {
+    return {
+      title: ''
+    }
+  },
+  methods: {
+    titleChange(title) {
+      this.title = title
+    },
+  },
   computed: {
     articleTitle() {
-      var path = this.$route.path.replace(/_/g, ' ').slice(7, this.$route.path.length)
-      var firstLetter = path.slice(1, 2).toUpperCase()
-      var rest = path.slice(2)
-      return  firstLetter + rest
+      if ( this.title.length > 0 ) {
+        return this.title
+      }
     }
   }
 }
