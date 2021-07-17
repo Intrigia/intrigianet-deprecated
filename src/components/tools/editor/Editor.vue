@@ -7,7 +7,9 @@
           {{ localTitle }}
         </p>
       </div>
-      <div 
+      <WritingArea />
+
+<!--       <div 
         class="content-items"
         v-for="(item, i) in content"
         :key="i"
@@ -22,7 +24,7 @@
           @deleteParagraph="deleteParagraph($event)"
           @updateDone="updateDone($event)"
         ></component>
-      </div>
+      </div> -->
       <!-- (1) -->
 <!--       <q-separator inset class="q-mt-lg" />
       <div class="row justify-center q-pt-lg">
@@ -59,6 +61,7 @@
 <script>
 import Toolbar from 'components/tools/editor/editor_components/EditorToolbar.vue'
 import Editor from 'components/tools/editor/editor_components/EditorWritingArea.vue'
+import WritingArea from './editor_components/EditorWritingArea.vue';
 import Sources from 'components/tools/editor/sources_components/Source.vue'
 // TODO Add these to WritingArea component.
 import Paragraph from 'components/tools/editor/editor_components/editor_elements/Paragraph.vue'
@@ -69,6 +72,7 @@ export default {
   components: {
     Toolbar,
     Editor,
+    WritingArea,
     Sources,
     Paragraph,
     ImageView
