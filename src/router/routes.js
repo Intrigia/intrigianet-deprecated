@@ -56,6 +56,16 @@ const routes = [
       }
     ]
   },
+  {
+    path: '/login',
+    component: () => import('layouts/AuthLayout.vue'),
+    children: [
+      {
+        path: '/login',
+        component: () => import('pages/login/Login.vue')
+      }
+    ]
+  },
 
   // Always leave this as last one,
   // but you can also remove it

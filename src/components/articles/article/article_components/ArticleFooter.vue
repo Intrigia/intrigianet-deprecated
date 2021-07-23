@@ -1,7 +1,10 @@
 <template>
   <q-card-actions>
-    <q-btn flat round icon="event" />                   <!-- This is displayed when function at (1) determines deadline as not set -->
-    <q-item-label class="q-mr-md"> {{ deadlineFormatted }} <span v-if="noDeadline"> Inget publiceringsdatum </span> </q-item-label>
+    <q-btn flat round icon="event">
+      <DeadlinePicker date="date" @newDate="newDate($event)" />
+    </q-btn>
+                                                           <!-- This is displayed when function at (1) determines deadline as not set -->
+    <q-item-label class="q-mr-md"> {{ deadlineFormatted }} </q-item-label>
 
     <q-space></q-space>
 
@@ -16,15 +19,40 @@
 </template>
 
 <script>
+import DeadlinePicker from 'components/DeadlinePicker.vue'
+
 export default {
   props: ['deadline', 'title'],
+  components: { DeadlinePicker },
+  data() {
+    return { 
+      date: null,
+    }
+  },
+  created() {
+    this.date = this.deadline
+  },
   methods: {
     parsedDate(date, options) { 
-      var parsed = new Intl.DateTimeFormat('sv-SE', options).format(date)
+      if (date.length < 1 ) {
+        return 'Inget publiceringsdatum'
+      }
+      if (typeof(this.date) != 'string') { 
+        var parsed = new Intl.DateTimeFormat('sv-SE', options).format(date)
+      } else if(typeof(this.date) != 'object') {
+        var unParsedDate = Date.parse(date)
+        var parsed = new Intl.DateTimeFormat('sv-SE', options).format(unParsedDate)
+      } else {
+        return false
+      }
       parsed = parsed.toString()
       parsed = parsed[0].toUpperCase() + parsed.slice(1, parsed.length)
       return parsed
     },
+    newDate(date) {
+      // TODO update vuex state for this article 
+      this.date = date
+    }
   },
   computed: {
     route() {
@@ -32,6 +60,7 @@ export default {
     },
     // Determines whether the deadline has been set or not (1)
     noDeadline() {
+      console.log(typeof(this.deadline))
       if (typeof(this.deadline) == 'string') {
         return true
       } else {
@@ -65,7 +94,6 @@ export default {
     Add further formats for past today date
     */
     deadlineFormatted() {
-      if (typeof(this.deadline) != 'string') {
 /*         const today = new Date()
 
         const year = this.deadline.getFullYear(),
@@ -82,13 +110,13 @@ export default {
           console.log(this.parsedDate(this.deadline, options))
           return this.parsedDate(this.deadline, options)
         } */
-        
         // Remove this after the conditionals at (2)
-        const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric'  }
-        this.parsedDate(this.deadline, options)
-        console.log(this.parsedDate(this.deadline, options))
-        return this.parsedDate(this.deadline, options)
+      const options = { 
+        weekday: 'long', year: 'numeric', month: 'short', day: 'numeric',
+        hour: 'numeric', minute: 'numeric'
       }
+      console.log(this.parsedDate(this.date, options))
+      return this.parsedDate(this.date, options)
     }
   }
 }
