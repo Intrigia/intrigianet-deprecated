@@ -123,7 +123,7 @@ export default {
       In order to do any updates regarding the DOM we have to let it wait at least 1 ms.
       TODO check if there are any better solutions as this might be affected on slower browser speeds.
       */
-      setTimeout(() => {
+/*       setTimeout(() => {
         console.log(this.$refs)
         // Gets the refs and reverses the array that Object.keys creates. This makes the array bottom to top.
         var refsArr = Object.keys(this.$refs).reverse()
@@ -141,7 +141,7 @@ export default {
             break;
           }
         }
-      }, 1)
+      }, 1) */
     },
     // Sources
     setSourceLabel(label) {
