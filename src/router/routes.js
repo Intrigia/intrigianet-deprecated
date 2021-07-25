@@ -47,11 +47,11 @@ const routes = [
     component: () => import('layouts/EditorLayout.vue'),
     children: [
       {
-        path: ':article_id',
+        path: ':ID',
         component: () => import('pages/tools/EditorPage.vue')
       },
       {
-        path: ':article_id/förhandsgranskning',
+        path: ':article_id/:ID/förhandsgranskning',
         component: () => import('pages/tools/Preview.vue')
       }
     ]

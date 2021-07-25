@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import Modal from 'components/articles/NewArticleModal.vue'
 import Tabs from 'components/articles/view/ArticleTabs.vue'
 import TabPages from 'components/articles/view/ArticleViews.vue'
@@ -47,6 +49,9 @@ export default {
 		TabPages, // ArticleViews.vue
 		Modal, // NewArticleModal.vue
 	},
+  computed: {
+    ...mapGetters('articles', ['articles']),
+  },
 	created() {
 		/* 
 		Adding eventListener for window width for the custom css and v-if statement 
@@ -60,12 +65,12 @@ export default {
 		// End date, latest possible deadline
 		const end = new Date(2022, 12, 30, 23, 40, 40)
 
-		const allArticles = Object.keys(this.articles)
+/* 		const allArticles = Object.keys(this.articles)
     allArticles.forEach(el => {
       for (var y = 1; y < this.articles[el].length; y++) {
         this.articles[el][y].deadline = this.randomDate(start, end)
       }
-    });
+    }); */
   },
   destroyed() {
     window.addEventListener('resize', this.resizeHanlder)
@@ -125,7 +130,7 @@ export default {
       The names of articles properties (who in themselves are arrays with objects) 
       also have to correspond with the tab names and vice versa
       */
-			articles: {
+/* 			articles: {
         all_articles: [
           {
             ID: 1,
@@ -246,7 +251,7 @@ export default {
             status: 'Publicerad',
           }
         ]
-      }
+      } */
     }
   },
 }
