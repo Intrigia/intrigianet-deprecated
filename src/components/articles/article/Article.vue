@@ -6,7 +6,7 @@
 
 		<q-separator inset />
 
-		<ArticleFooter :deadline="deadline" :title="title" />
+		<ArticleFooter :ID="ID" :deadline="deadline" :title="title" />
 
 	</q-card>
 </template>
@@ -25,7 +25,7 @@ export default {
 	props: {
 		//Props from the article data looped through the v-for
 		ID: {
-			type: Number,
+			type: String,
 			required: true
 		},
 

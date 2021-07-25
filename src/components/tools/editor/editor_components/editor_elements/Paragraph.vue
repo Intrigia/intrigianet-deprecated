@@ -4,9 +4,9 @@
       @focus="select()"
       class="input"
       ref="editable"
-      :id="index"
-      contenteditable
-      @input="$emit('input', $refs.editable.innerText)"
+      :id="ID"
+      contenteditable="true"
+      @input="contentChange()"
       @keydown.enter.prevent="newParagraph()"
       @keydown.delete="deleteParagraph()"
       placeholder="Skriv här..."
@@ -15,26 +15,29 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   props: {
+    articleID: {
+      type: String,
+      required: true,
+    },
     value: {
       type: String,
       default: null,
     },
-    index: {
-      type: Number,
+    ID: {
+      type: String,
       required: true
     },
-    newCheck: {
-      type: Boolean,
-      default: false
-    }
   },
   mounted() {
     // Sets the innerText of the paragraph to the value passed down from v-model on init
     this.$refs.editable.innerText = this.value
   },
   methods: {
+    ...mapActions('articles', ['updateContent', 'newContentItem']),
     select() {
       // Next tick is needed to wait for DOM changes before the element can be selected
       this.$nextTick(() => {
@@ -47,35 +50,23 @@ export default {
         sel.addRange(range);
       })
     },
+    contentChange() {
+      this.updateContent({ ID: this.articleID, content_ID: this.ID, content: this.$refs.editable.innerText })
+    },
     // Custom event call for new paragraph / component on enter keypress
     newParagraph() {
-      this.$emit('newParagraph', this.index)
+      this.newContentItem({ ID: this.articleID, content_ID: this.ID, type: 'paragraph' })
     },
     // Custom event call for deleting the paragraph / component when the value (the text) is zero on keydown
     deleteParagraph() {
-      if(this.value.length == 0) {
-        this.$emit('deleteParagraph', this.index)
-      }
+      
     }
   },
   watch: {
-    value: function() {
-      var el = this.$refs.editable
-      var range = document.createRange()
-      var sel = window.getSelection();
-      if(this.newCheck == true) {
-        // Gets the value that is changed with the v-model
-        var someValue = this.value
-        // Sets the innerText of the paragraph to the value from v-model
-        this.$refs.editable.innerText = this.value
-        // Offsetting the caret position that is not at 1 because of the above
-        range.selectNodeContents(el);
-        range.collapse(false);
-        sel.removeAllRanges();
-        sel.addRange(range);
+    value: function(val) {
+      if (this.$refs.editable.innerText != val) {
+        this.$refs.editable.innerText = val
       }
-      // Emits a call for the custom event that turns newCheck to false, i.e. that it is no longer new because it has been edited
-      this.$emit('updateDone', this.index)
     }
   }
 }

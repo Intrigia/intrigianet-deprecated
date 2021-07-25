@@ -29,8 +29,10 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
-  props: ['date'],
+  props: ['ID', 'date'],
   data() {
     return { 
       localDate: '',
@@ -40,7 +42,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions('articles', ['updateDeadline']),
     newDate() {
+      this.updateDeadline({ ID: this.ID, date: this.localDate })
       this.$emit('newDate', this.localDate)
     }
   }

@@ -1,10 +1,10 @@
 <template>
   <q-card-actions>
     <q-btn flat round icon="event">
-      <DeadlinePicker date="date" @newDate="newDate($event)" />
+      <DeadlinePicker :ID="ID" :date="date" @newDate="newDate($event)" />
     </q-btn>
-                                                           <!-- This is displayed when function at (1) determines deadline as not set -->
-    <q-item-label class="q-mr-md"> {{ deadlineFormatted }} </q-item-label>
+
+    <q-item-label class="q-mr-md"> {{ deadline }} </q-item-label>
 
     <q-space></q-space>
 
@@ -13,7 +13,7 @@
       on-right
       color="primary"
       label="Redigera"
-      @click="$router.push({path: `/editor/${route}`})"
+      @click="$router.push({path: `/editor/${ID}`})"
     />
   </q-card-actions>
 </template>
@@ -22,7 +22,7 @@
 import DeadlinePicker from 'components/DeadlinePicker.vue'
 
 export default {
-  props: ['deadline', 'title'],
+  props: ['ID', 'deadline', 'title'],
   components: { DeadlinePicker },
   data() {
     return { 
@@ -57,15 +57,6 @@ export default {
   computed: {
     route() {
       return this.title.replace(/\s/g, '_')
-    },
-    // Determines whether the deadline has been set or not (1)
-    noDeadline() {
-      console.log(typeof(this.deadline))
-      if (typeof(this.deadline) == 'string') {
-        return true
-      } else {
-        return false
-      }
     },
     /* TODO
     Make these formats for the output of deadlineFormatted custom for each period:
